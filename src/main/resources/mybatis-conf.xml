@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!-- 打印sql语句 -->
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING" />
+    </settings>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/school?characterEncoding=utf-8&amp;serverTimezone=GMT%2b8&amp;useSSL=false"/>
+                <property name="username" value="root"/>
+                <property name="password" value="123456"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <!--这二者取其一，都取报错。这种方式需要映射文件和接口有相同的包名 https://blog.csdn.net/lmy86263/article/details/53428417 -->
+        <!--扫描指定映射件，使用该方式配置时，映射文件可以和接口包名不同且正常运行-->
+        <!--<mapper resource="mybatis/StudentMapper.xml" />-->
+        <!--扫描包下所有接口文件，该方法配置，如果映射文件和接口包名不同就会报异常-->
+        <package name="com.lc" />
+    </mappers>
+</configuration>
